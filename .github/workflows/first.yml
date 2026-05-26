@@ -15,9 +15,9 @@ jobs:
 
           - name: systme check karo
             run: |
-            echo "pipeline chal rahi hai"
-            echo "pipeline chal rahi hai"
-            echo "Commit: $GITHUB_SHA"
+              echo "pipeline chal rahi hai"
+              echo "pipeline chal rahi hai"
+              echo "Commit: $GITHUB_SHA"
 
           - name: files dekho
             run: ls -la
