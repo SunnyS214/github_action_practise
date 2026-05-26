@@ -1,0 +1,94 @@
+name: Mid Level CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code lao
+        uses: actions/checkout@v3
+
+      - name: Node install karo
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Project info dekho
+        run: |
+          echo "=== PROJECT INFO ==="
+          echo "Branch: $GITHUB_REF"
+          echo "Commit: $GITHUB_SHA"
+          echo "Kaam kar raha hai: $GITHUB_ACTOR"
+          echo "==================="
+
+      - name: Files check karo
+        run: |
+          echo "=== FILES ==="
+          ls -la
+          echo "============="
+
+      - name: Unit test karo
+        run: |
+          echo "=== TESTS ==="
+          echo "Test 1: Login check... PASS ✅"
+          echo "Test 2: Payment check... PASS ✅"
+          echo "Test 3: Database check... PASS ✅"
+          echo "Sab tests pass ho gaye!"
+          echo "=============="
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code lao
+        uses: actions/checkout@v3
+
+      - name: Build shuru karo
+        run: |
+          echo "=== BUILD ==="
+          echo "Step 1: Dependencies install ho rahi hain..."
+          echo "Step 2: Code compile ho raha hai..."
+          echo "Step 3: Files ready ho rahi hain..."
+          echo "Build complete! ✅"
+          echo "=============="
+
+      - name: Build verify karo
+        run: |
+          echo "Build ka size check kar rahe hain..."
+          echo "Build files sahi hain!"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code lao
+        uses: actions/checkout@v3
+
+      - name: Deploy ki tayyari
+        run: |
+          echo "=== DEPLOY ==="
+          echo "Server se connect ho rahe hain..."
+          echo "Purana version backup ho raha hai..."
+
+      - name: Deploy karo
+        run: |
+          echo "Naya code server pe ja raha hai..."
+          echo "Server restart ho raha hai..."
+          echo "Health check kar rahe hain..."
+          echo "Deploy complete! 🚀"
+          echo "==============="
+
+      - name: Notify karo
+        run: |
+          echo "=== NOTIFICATION ==="
+          echo "Team ko batao:"
+          echo "New version LIVE hai!"
+          echo "Commit: $GITHUB_SHA"
+          echo "Deploy kiya: $GITHUB_ACTOR"
+          echo "===================="
