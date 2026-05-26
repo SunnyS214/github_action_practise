@@ -1,0 +1,26 @@
+name: Mera pehla CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check_karo:
+    runs-on: ubuntu-latest
+
+    steps:
+          - name: Code lao
+            uses: actions/checkout@v3
+
+          - name: systme check karo
+            run: |
+            echo "pipeline chal rahi hai"
+            echo "pipeline chal rahi hai"
+            echo "Commit: $GITHUB_SHA"
+
+          - name: files dekho
+            run: ls -la
+
+          - name: Success!
+            run: echo "sab thik hai ! Deploy ready!"
